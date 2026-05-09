@@ -1,0 +1,44 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: docker/web.Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+
+  worker:
+    build:
+      context: .
+      dockerfile: docker/web.Dockerfile
+    command: celery -A config worker -l info -Q submissions,imports,default
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - judge-runner
+
+  judge-runner:
+    build:
+      context: .
+      dockerfile: docker/judge.Dockerfile
+    env_file:
+      - .env
+    ports:
+      - "8001:8001"
+    volumes:
+      - .:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"

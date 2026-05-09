@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section class="grid" style="align-items:start;">
+    <article class="panel stack">
+      <div class="nav">
+        <div>
+          <p class="kicker">{{ problem.get_difficulty_display }}</p>
+          <h1 class="section-title">{{ problem.title }}</h1>
+        </div>
+        {% if attempt and attempt.solved %}
+          <span style="color: var(--success); font-weight: 700;">Solved</span>
+        {% endif %}
+      </div>
+      <div>{{ problem.statement_html|safe }}</div>
+      <section>
+        <h2>Constraints</h2>
+        <pre>{{ problem.constraints_md }}</pre>
+      </section>
+      <section class="stack">
+        <h2>Examples</h2>
+        {% for example in problem.examples.all %}
+          <div class="panel">
+            <p><strong>Input:</strong> {{ example.input_text }}</p>
+            <p><strong>Output:</strong> {{ example.output_text }}</p>
+            {% if example.explanation %}<p><strong>Explanation:</strong> {{ example.explanation }}</p>{% endif %}
+          </div>
+        {% endfor %}
+      </section>
+    </article>
+    <aside class="panel stack">
+      <h2>Submit solution</h2>
+      {% if user.is_authenticated %}
+        <form method="post" action="{% url 'submissions:create' slug=problem.slug %}" class="stack">
+          {% csrf_token %}
+          <label>
+            <span>Language</span>
+            <select name="language">
+              <option value="python">Python</option>
+            </select>
+          </label>
+          <textarea name="source_code" rows="18">{% if starter_code %}{{ starter_code.template_code }}{% endif %}</textarea>
+          <button type="submit">Run against hidden tests</button>
+        </form>
+      {% else %}
+        <p class="muted">Log in to submit a solution and track your progress.</p>
+      {% endif %}
+    </aside>
+  </section>
+{% endblock %}

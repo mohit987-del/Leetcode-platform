@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section class="panel">
+    <p class="kicker">Profile</p>
+    <h1 class="section-title">{{ object.display_name }}</h1>
+    <p class="muted">{{ object.email }}</p>
+    <p>{{ object.bio|default:"Tell recruiters what kinds of problems you love solving." }}</p>
+  </section>
+{% endblock %}

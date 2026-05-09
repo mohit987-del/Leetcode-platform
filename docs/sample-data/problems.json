@@ -1,0 +1,137 @@
+[
+  {
+    "problem": {
+      "slug": "two-sum",
+      "title": "Two Sum",
+      "difficulty": "easy",
+      "statement_html": "<p>Return the indices of the two numbers whose sum equals the target.</p>",
+      "constraints_md": "- 2 <= nums.length\n- Only one valid answer exists."
+    },
+    "tags": ["arrays", "hash map"],
+    "examples": [
+      {
+        "input_text": "nums = [2, 7, 11, 15], target = 9",
+        "output_text": "[0, 1]",
+        "explanation": "nums[0] + nums[1] equals 9."
+      }
+    ],
+    "starter_code": [
+      {
+        "language": "python",
+        "template_code": "def solve(raw_input):\n    nums_part, target_part = raw_input.split(\";\")\n    nums = list(map(int, nums_part.split()))\n    target = int(target_part)\n    return []\n"
+      }
+    ],
+    "public_test_cases": [
+      {
+        "input_data": "2 7 11 15;9",
+        "expected_output": "[0, 1]",
+        "weight": 1
+      }
+    ],
+    "hidden_test_cases": [
+      {
+        "input_data": "3 2 4;6",
+        "expected_output": "[1, 2]",
+        "weight": 1
+      }
+    ],
+    "source": {
+      "source_name": "seed",
+      "source_url": "https://example.com/two-sum",
+      "source_problem_id": "1"
+    }
+  },
+  {
+    "problem": {
+      "slug": "valid-parentheses",
+      "title": "Valid Parentheses",
+      "difficulty": "easy",
+      "statement_html": "<p>Determine whether the input string has valid parentheses ordering.</p>",
+      "constraints_md": "- 1 <= s.length <= 10^4"
+    },
+    "tags": ["stack", "strings"],
+    "examples": [
+      {
+        "input_text": "s = ()[]{}",
+        "output_text": "True",
+        "explanation": "Every bracket is closed correctly."
+      }
+    ],
+    "starter_code": [{"language": "python", "template_code": "def solve(raw_input):\n    return True\n"}],
+    "public_test_cases": [{"input_data": "()[]{}", "expected_output": "True", "weight": 1}],
+    "hidden_test_cases": [{"input_data": "(]", "expected_output": "False", "weight": 1}],
+    "source": {"source_name": "seed", "source_problem_id": "2"}
+  },
+  {
+    "problem": {"slug": "best-time-to-buy-and-sell-stock", "title": "Best Time to Buy and Sell Stock", "difficulty": "easy", "statement_html": "<p>Find the maximum profit from one buy and one sell.</p>", "constraints_md": "- 1 <= prices.length <= 10^5"},
+    "tags": ["arrays", "dynamic programming"],
+    "examples": [{"input_text": "prices = [7,1,5,3,6,4]", "output_text": "5", "explanation": "Buy at 1 and sell at 6."}],
+    "starter_code": [{"language": "python", "template_code": "def solve(raw_input):\n    return 0\n"}],
+    "public_test_cases": [{"input_data": "7 1 5 3 6 4", "expected_output": "5", "weight": 1}],
+    "hidden_test_cases": [{"input_data": "7 6 4 3 1", "expected_output": "0", "weight": 1}],
+    "source": {"source_name": "seed", "source_problem_id": "3"}
+  },
+  {
+    "problem": {"slug": "contains-duplicate", "title": "Contains Duplicate", "difficulty": "easy", "statement_html": "<p>Return true if any value appears at least twice.</p>", "constraints_md": "- 1 <= nums.length <= 10^5"},
+    "tags": ["arrays", "hash map"],
+    "examples": [{"input_text": "nums = [1,2,3,1]", "output_text": "True", "explanation": "1 appears twice."}],
+    "starter_code": [{"language": "python", "template_code": "def solve(raw_input):\n    return False\n"}],
+    "public_test_cases": [{"input_data": "1 2 3 1", "expected_output": "True", "weight": 1}],
+    "hidden_test_cases": [{"input_data": "1 2 3 4", "expected_output": "False", "weight": 1}],
+    "source": {"source_name": "seed", "source_problem_id": "4"}
+  },
+  {
+    "problem": {"slug": "product-of-array-except-self", "title": "Product of Array Except Self", "difficulty": "medium", "statement_html": "<p>Return an array where each index is the product of all other elements.</p>", "constraints_md": "- Solve without division."},
+    "tags": ["arrays", "prefix sum"],
+    "examples": [{"input_text": "nums = [1,2,3,4]", "output_text": "[24,12,8,6]", "explanation": "Multiply all other values."}],
+    "starter_code": [{"language": "python", "template_code": "def solve(raw_input):\n    return []\n"}],
+    "public_test_cases": [{"input_data": "1 2 3 4", "expected_output": "[24, 12, 8, 6]", "weight": 1}],
+    "hidden_test_cases": [{"input_data": "-1 1 0 -3 3", "expected_output": "[0, 0, 9, 0, 0]", "weight": 1}],
+    "source": {"source_name": "seed", "source_problem_id": "5"}
+  },
+  {
+    "problem": {"slug": "maximum-subarray", "title": "Maximum Subarray", "difficulty": "medium", "statement_html": "<p>Find the contiguous subarray with the largest sum.</p>", "constraints_md": "- 1 <= nums.length <= 10^5"},
+    "tags": ["arrays", "dynamic programming"],
+    "examples": [{"input_text": "nums = [-2,1,-3,4,-1,2,1,-5,4]", "output_text": "6", "explanation": "[4,-1,2,1] has the largest sum."}],
+    "starter_code": [{"language": "python", "template_code": "def solve(raw_input):\n    return 0\n"}],
+    "public_test_cases": [{"input_data": "-2 1 -3 4 -1 2 1 -5 4", "expected_output": "6", "weight": 1}],
+    "hidden_test_cases": [{"input_data": "1", "expected_output": "1", "weight": 1}],
+    "source": {"source_name": "seed", "source_problem_id": "6"}
+  },
+  {
+    "problem": {"slug": "climbing-stairs", "title": "Climbing Stairs", "difficulty": "easy", "statement_html": "<p>Count the number of ways to climb to the top.</p>", "constraints_md": "- 1 <= n <= 45"},
+    "tags": ["dynamic programming"],
+    "examples": [{"input_text": "n = 3", "output_text": "3", "explanation": "Three ways to climb 3 stairs."}],
+    "starter_code": [{"language": "python", "template_code": "def solve(raw_input):\n    return 0\n"}],
+    "public_test_cases": [{"input_data": "3", "expected_output": "3", "weight": 1}],
+    "hidden_test_cases": [{"input_data": "5", "expected_output": "8", "weight": 1}],
+    "source": {"source_name": "seed", "source_problem_id": "7"}
+  },
+  {
+    "problem": {"slug": "number-of-islands", "title": "Number of Islands", "difficulty": "medium", "statement_html": "<p>Count connected groups of land cells.</p>", "constraints_md": "- m, n <= 300"},
+    "tags": ["graphs", "dfs"],
+    "examples": [{"input_text": "grid = [[1,1,0],[0,1,0],[1,0,1]]", "output_text": "3", "explanation": "There are three islands."}],
+    "starter_code": [{"language": "python", "template_code": "def solve(raw_input):\n    return 0\n"}],
+    "public_test_cases": [{"input_data": "110|010|101", "expected_output": "3", "weight": 1}],
+    "hidden_test_cases": [{"input_data": "11110|11010|11000|00000", "expected_output": "1", "weight": 1}],
+    "source": {"source_name": "seed", "source_problem_id": "8"}
+  },
+  {
+    "problem": {"slug": "course-schedule", "title": "Course Schedule", "difficulty": "medium", "statement_html": "<p>Determine if you can finish all courses given prerequisites.</p>", "constraints_md": "- 1 <= numCourses <= 2000"},
+    "tags": ["graphs", "topological sort"],
+    "examples": [{"input_text": "numCourses = 2, prerequisites = [[1,0]]", "output_text": "True", "explanation": "You can take course 0 then 1."}],
+    "starter_code": [{"language": "python", "template_code": "def solve(raw_input):\n    return False\n"}],
+    "public_test_cases": [{"input_data": "2;1,0", "expected_output": "True", "weight": 1}],
+    "hidden_test_cases": [{"input_data": "2;1,0|0,1", "expected_output": "False", "weight": 1}],
+    "source": {"source_name": "seed", "source_problem_id": "9"}
+  },
+  {
+    "problem": {"slug": "merge-intervals", "title": "Merge Intervals", "difficulty": "medium", "statement_html": "<p>Merge all overlapping intervals.</p>", "constraints_md": "- 1 <= intervals.length <= 10^4"},
+    "tags": ["intervals", "sorting"],
+    "examples": [{"input_text": "intervals = [[1,3],[2,6],[8,10],[15,18]]", "output_text": "[[1,6],[8,10],[15,18]]", "explanation": "The first two intervals overlap."}],
+    "starter_code": [{"language": "python", "template_code": "def solve(raw_input):\n    return []\n"}],
+    "public_test_cases": [{"input_data": "1,3|2,6|8,10|15,18", "expected_output": "[[1, 6], [8, 10], [15, 18]]", "weight": 1}],
+    "hidden_test_cases": [{"input_data": "1,4|4,5", "expected_output": "[[1, 5]]", "weight": 1}],
+    "source": {"source_name": "seed", "source_problem_id": "10"}
+  }
+]

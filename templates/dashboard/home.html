@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section class="hero">
+    <p class="kicker">Dashboard</p>
+    <h1 class="section-title">Your progress</h1>
+    <p class="muted">Track solved problems, streaks, and submission performance in one place.</p>
+    <div class="grid">
+      <div class="panel">
+        <strong>{{ stats.solved|default:0 }}</strong>
+        <p class="muted">Accepted submissions</p>
+      </div>
+      <div class="panel">
+        <strong>{{ stats.total|default:0 }}</strong>
+        <p class="muted">Total submissions</p>
+      </div>
+    </div>
+  </section>
+  <section class="panel stack" style="margin-bottom: 2rem;">
+    <h2>Recent submissions</h2>
+    {% for submission in recent_submissions %}
+      <div class="panel">
+        <div class="nav">
+          <strong>{{ submission.problem.title }}</strong>
+          <span>{{ submission.get_verdict_display }}</span>
+        </div>
+      </div>
+    {% empty %}
+      <p class="muted">You have not submitted any solutions yet.</p>
+    {% endfor %}
+  </section>
+{% endblock %}

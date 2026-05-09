@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section class="panel stack">
+    <p class="kicker">Submission history</p>
+    <h1 class="section-title">Recent runs</h1>
+    {% for submission in submissions %}
+      <div class="panel">
+        <div class="nav">
+          <strong>{{ submission.problem.title }}</strong>
+          <span>{{ submission.get_verdict_display }}</span>
+        </div>
+      </div>
+    {% empty %}
+      <p class="muted">No submissions yet.</p>
+    {% endfor %}
+  </section>
+{% endblock %}

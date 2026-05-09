@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section class="hero">
+    <p class="kicker">Interview prep, rebuilt</p>
+    <h1 class="section-title">CodeArena</h1>
+    <p class="muted">A Django-powered coding practice platform with async judging, progress tracking, and a clean path to scale.</p>
+    <div class="nav">
+      <a href="{% url 'accounts:signup' %}" class="button">Start solving</a>
+      <a href="{% url 'accounts:login' %}" class="button secondary">See your dashboard</a>
+    </div>
+  </section>
+{% endblock %}

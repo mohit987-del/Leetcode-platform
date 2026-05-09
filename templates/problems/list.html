@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <section class="panel stack">
+    <div>
+      <p class="kicker">Problem bank</p>
+      <h1 class="section-title">Practice problems</h1>
+    </div>
+    <form method="get" class="grid">
+      <input type="text" name="q" placeholder="Search by title" value="{{ request.GET.q }}">
+      <select name="difficulty">
+        <option value="">All difficulties</option>
+        <option value="easy" {% if request.GET.difficulty == "easy" %}selected{% endif %}>Easy</option>
+        <option value="medium" {% if request.GET.difficulty == "medium" %}selected{% endif %}>Medium</option>
+        <option value="hard" {% if request.GET.difficulty == "hard" %}selected{% endif %}>Hard</option>
+      </select>
+      <button type="submit">Filter</button>
+    </form>
+    <div class="stack">
+      {% for problem in problems %}
+        <article class="panel">
+          <div class="nav">
+            <a href="{{ problem.get_absolute_url }}"><strong>{{ problem.title }}</strong></a>
+            <span class="muted">{{ problem.get_difficulty_display }}</span>
+          </div>
+        </article>
+      {% empty %}
+        <p class="muted">No problems match your filters yet.</p>
+      {% endfor %}
+    </div>
+  </section>
+{% endblock %}
