@@ -2,13 +2,18 @@ import os
 from pathlib import Path
 
 from dotenv import load_dotenv
+from config.env import build_csrf_trusted_origins, parse_csv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
 
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "")
 DEBUG = os.getenv("DJANGO_DEBUG", "1") == "1"
-ALLOWED_HOSTS = [host for host in os.getenv("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1").split(",") if host]
+ALLOWED_HOSTS = parse_csv(os.getenv("DJANGO_ALLOWED_HOSTS", "localhost,127.0.0.1"))
+CSRF_TRUSTED_ORIGINS = build_csrf_trusted_origins(
+    ALLOWED_HOSTS,
+    parse_csv(os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS", "")),
+)
 
 
 INSTALLED_APPS = [
@@ -36,6 +41,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+USE_X_FORWARDED_HOST = True
 
 ROOT_URLCONF = 'config.urls'
 
