@@ -2,7 +2,30 @@ import os
 from pathlib import Path
 
 from dotenv import load_dotenv
-from config.env import build_csrf_trusted_origins, parse_csv
+
+
+def parse_csv(value):
+    if not value:
+        return []
+    items = []
+    for raw_item in value.split(","):
+        item = raw_item.strip().strip("\"'")
+        if item:
+            items.append(item)
+    return items
+
+
+def build_csrf_trusted_origins(allowed_hosts, explicit_origins):
+    if explicit_origins:
+        return explicit_origins
+
+    origins = []
+    for host in allowed_hosts:
+        if host in {"localhost", "127.0.0.1"}:
+            origins.append(f"http://{host}")
+        else:
+            origins.append(f"https://{host}")
+    return origins
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / ".env")
